@@ -7,7 +7,7 @@
    body {
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(120deg, #30b98d, #30b98d);
+    background: linear-gradient(120deg, #30b98d, #306bb9);
    }
    canvas {
     position: absolute;
@@ -15,7 +15,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: black;
+    background: rgb(255, 255, 255);
     z-index: 2;
    }
    

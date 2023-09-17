@@ -1,10 +1,18 @@
 window.addEventListener("load", function () {
-    const canvas = document.getElementById("canvas1");
+    const canvas = document.getElementById("scene");
     const ctx = canvas.getContext("2d", {
         willReadFrequently: true
     });
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+ 
+    // ctx.strokeStyle = "black";
+    // ctx.lineWidth = 2;
+    // ctx.font = "21vw Helvetica";
+    // ctx.textAlign = "center";
+    // ctx.textBaseline = "middle";
+    // ctx.strokeText('GRUMBS', canvas.width / 2, canvas.height / 2);
+   
 
     class Particle {
         constructor(effect, x, y, color) {
@@ -14,7 +22,8 @@ window.addEventListener("load", function () {
             this.color = color;
             this.originX = x;
             this.originY = y;
-            this.size = 1  + (Math.random() * this.effect.gap);
+            // this.size = 3 ;
+            this.rad = Math.random() * this.effect.gap ;
             this.dx = 0;
             this.dy = 0;
             this.vx = 0;
@@ -28,7 +37,11 @@ window.addEventListener("load", function () {
 
         draw() {
             this.effect.context.fillStyle = this.color;
-            this.effect.context.fillRect(this.x, this.y, this.size, this.size);
+            this.effect.context.beginPath();
+            // this.effect.context.fillRect(this.x, this.y, this.size, this.size);
+            this.effect.context.arc(this.x, this.y, this.rad, Math.PI * 2, false);
+            this.effect.context.fill();
+
 
         }
 
@@ -60,7 +73,7 @@ window.addEventListener("load", function () {
 
             //Particle 
             this.particles = []
-            this.gap = 3
+            this.gap = 2
             this.mouse = {
                 radius: 2500,
                 x: 0,
@@ -90,6 +103,7 @@ window.addEventListener("load", function () {
             this.context.strokeText(text, this.textX, this.textY);
             this.context.fillText(text, this.textX, this.textY)
 
+           
             this.ParticleConv();
         }
 
@@ -105,7 +119,7 @@ window.addEventListener("load", function () {
                         const red = pixel[index]
                         const green = pixel[index + 1]
                         const blue = pixel[index + 2]
-                        const color = 'rgb(' + red + ',' + green + ',' + blue + ')';
+                        const color = 'hsl(' + Math.random() * 359 + ',' + 100 + '%' + ',' + 60 + '%' + ')';
                         this.particles.push(new Particle(this, x, y, color));
 
                     }
