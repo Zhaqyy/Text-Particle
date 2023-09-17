@@ -5,25 +5,25 @@ window.addEventListener("load", function () {
     });
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
- 
+
     // ctx.strokeStyle = "black";
     // ctx.lineWidth = 2;
     // ctx.font = "21vw Helvetica";
     // ctx.textAlign = "center";
     // ctx.textBaseline = "middle";
     // ctx.strokeText('GRUMBS', canvas.width / 2, canvas.height / 2);
-   
+
 
     class Particle {
         constructor(effect, x, y, color) {
             this.effect = effect;
-            this.x = Math.random() * this.effect.canvasWidth;
-            this.y = Math.random() * this.effect.canvasHeight;
+            this.x = Math.floor(Math.random() * this.effect.canvasWidth);
+            this.y = Math.floor(Math.random() * this.effect.canvasHeight);
             this.color = color;
             this.originX = x;
             this.originY = y;
-            // this.size = 3 ;
-            this.rad = Math.random() * this.effect.gap ;
+            this.size = 3 ;
+            this.rad = Math.floor(Math.random() * this.effect.gap);
             this.dx = 0;
             this.dy = 0;
             this.vx = 0;
@@ -37,11 +37,14 @@ window.addEventListener("load", function () {
 
         draw() {
             this.effect.context.fillStyle = this.color;
+            
+            // circle particle
             this.effect.context.beginPath();
-            // this.effect.context.fillRect(this.x, this.y, this.size, this.size);
             this.effect.context.arc(this.x, this.y, this.rad, Math.PI * 2, false);
             this.effect.context.fill();
 
+            // Uncomment for rectangle shape
+            // this.effect.context.fillRect(this.x, this.y, this.size, this.size);
 
         }
 
@@ -73,7 +76,7 @@ window.addEventListener("load", function () {
 
             //Particle 
             this.particles = []
-            this.gap = 2
+            this.gap = 4
             this.mouse = {
                 radius: 2500,
                 x: 0,
@@ -88,11 +91,11 @@ window.addEventListener("load", function () {
 
         //TEXT ****
         bigText(text) {
-            const h = Math.random() * 359
+            const h = Math.floor(Math.random() * 359) 
             const s = 100 + '%'
             const l = 50 + '%'
             const gradient = 'hsl(' + h + ',' + s + ',' + l + ')';
-            
+
 
             this.context.fillStyle = gradient;
             this.context.strokeStyle = "white";
@@ -103,7 +106,7 @@ window.addEventListener("load", function () {
             this.context.strokeText(text, this.textX, this.textY);
             this.context.fillText(text, this.textX, this.textY)
 
-           
+
             this.ParticleConv();
         }
 
@@ -119,7 +122,7 @@ window.addEventListener("load", function () {
                         const red = pixel[index]
                         const green = pixel[index + 1]
                         const blue = pixel[index + 2]
-                        const color = 'hsl(' + Math.random() * 359 + ',' + 100 + '%' + ',' + 60 + '%' + ')';
+                        const color = 'hsl(' + Math.floor(Math.random() * 359)  + ',' + 100 + '%' + ',' + 60 + '%' + ')';
                         this.particles.push(new Particle(this, x, y, color));
 
                     }
