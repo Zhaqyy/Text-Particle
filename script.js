@@ -3,8 +3,23 @@ window.addEventListener("load", function () {
     const ctx = canvas.getContext("2d", {
         willReadFrequently: true
     });
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+
+    // Get the DPR and size of the canvas
+    const dpr = window.devicePixelRatio;
+    const rect = canvas.getBoundingClientRect();
+
+    // Set the "actual" size of the canvas
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+
+    // Scale the context to ensure correct drawing operations
+    ctx.scale(dpr, dpr);
+    // Set the "drawn" size of the canvas
+canvas.style.width = `${rect.width}px`;
+canvas.style.height = `${rect.height}px`;
+
+    // canvas.width = window.innerWidth;
+    // canvas.height = window.innerHeight;
 
     // ctx.strokeStyle = "black";
     // ctx.lineWidth = 2;
@@ -22,7 +37,7 @@ window.addEventListener("load", function () {
             this.color = color;
             this.originX = x;
             this.originY = y;
-            this.size = 3 ;
+            this.size = 3;
             this.rad = Math.floor(Math.random() * this.effect.gap);
             this.dx = 0;
             this.dy = 0;
@@ -37,7 +52,7 @@ window.addEventListener("load", function () {
 
         draw() {
             this.effect.context.fillStyle = this.color;
-            
+
             // circle particle
             this.effect.context.beginPath();
             this.effect.context.arc(this.x, this.y, this.rad, Math.PI * 2, false);
@@ -91,7 +106,7 @@ window.addEventListener("load", function () {
 
         //TEXT ****
         bigText(text) {
-            const h = Math.floor(Math.random() * 359) 
+            const h = Math.floor(Math.random() * 359)
             const s = 100 + '%'
             const l = 50 + '%'
             const gradient = 'hsl(' + h + ',' + s + ',' + l + ')';
@@ -122,7 +137,7 @@ window.addEventListener("load", function () {
                         const red = pixel[index]
                         const green = pixel[index + 1]
                         const blue = pixel[index + 2]
-                        const color = 'hsl(' + Math.floor(Math.random() * 359)  + ',' + 100 + '%' + ',' + 60 + '%' + ')';
+                        const color = 'hsl(' + Math.floor(Math.random() * 359) + ',' + 100 + '%' + ',' + 60 + '%' + ')';
                         this.particles.push(new Particle(this, x, y, color));
 
                     }
