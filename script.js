@@ -161,7 +161,7 @@ canvas.style.height = `${rect.height}px`;
 
 
     const effect = new Effect(ctx, canvas.width, canvas.height);
-    effect.bigText("GRUMBS")
+    effect.bigText("Holla !")
     effect.Render()
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -173,6 +173,6 @@ canvas.style.height = `${rect.height}px`;
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         effect.resize(canvas.width, canvas.height)
-        effect.bigText("GRUMBS")
+        effect.bigText("Holla !")
     })
 });
