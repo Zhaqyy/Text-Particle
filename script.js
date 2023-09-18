@@ -4,22 +4,22 @@ window.addEventListener("load", function () {
         willReadFrequently: true
     });
 
-    // Get the DPR and size of the canvas
-    const dpr = window.devicePixelRatio;
-    const rect = canvas.getBoundingClientRect();
+    // // Get the DPR and size of the canvas
+    // const dpr = window.devicePixelRatio;
+    // const rect = canvas.getBoundingClientRect();
 
     // Set the "actual" size of the canvas
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
+//     canvas.width = rect.width * dpr;
+//     canvas.height = rect.height * dpr;
 
-    // Scale the context to ensure correct drawing operations
-    ctx.scale(dpr, dpr);
-    // Set the "drawn" size of the canvas
-canvas.style.width = `${rect.width}px`;
-canvas.style.height = `${rect.height}px`;
+//     // Scale the context to ensure correct drawing operations
+//     ctx.scale(dpr, dpr);
+//     // Set the "drawn" size of the canvas
+// canvas.style.width = `${rect.width}px`;
+// canvas.style.height = `${rect.height}px`;
 
-    // canvas.width = window.innerWidth;
-    // canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
     // ctx.strokeStyle = "black";
     // ctx.lineWidth = 2;
